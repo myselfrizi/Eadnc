@@ -1,0 +1,157 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Jakarta;src:url(jakarta.woff2) format('woff2');font-weight:200 800}
+@font-face{font-family:Inter;src:url(inter.woff2) format('woff2');font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d0b1a}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0d0b1a;font-family:Jakarta,Inter,sans-serif;color:#fff}
+.blob{position:absolute;border-radius:50%;filter:blur(90px)}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.6px);background-size:36px 36px}
+.layer{position:absolute;inset:0}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.word{position:absolute;left:0;right:0;text-align:center;font-weight:800;font-size:118px;letter-spacing:-3px;line-height:1}
+.logo{display:flex;align-items:center;gap:28px}
+.mark{width:150px;height:150px;border-radius:40px;background:linear-gradient(135deg,#8f73f9,#6a41ec);display:grid;place-items:center;box-shadow:0 30px 80px rgba(124,92,246,.55)}
+.name{font-weight:800;font-size:118px;letter-spacing:-3px}
+.name span{color:#9a85fc}
+.h1{font-weight:800;font-size:92px;letter-spacing:-2.5px;line-height:1.08}
+.grad{background:linear-gradient(90deg,#bbaeff,#7c5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cap{position:absolute;left:70px;right:70px;top:120px;text-align:center}
+.eyebrow{font-family:Inter;font-weight:700;font-size:30px;letter-spacing:6px;color:#bbaeff;text-transform:uppercase}
+.capline{font-weight:800;font-size:76px;letter-spacing:-2px;line-height:1.05;margin-top:16px}
+.phone{position:absolute;left:176px;top:350px;width:728px;height:1590px;border-radius:84px;background:#1b1830;padding:14px;box-shadow:0 60px 140px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.08) inset}
+.screen{position:relative;width:700px;height:1515px;border-radius:70px;overflow:hidden;background:#f6f5fb}
+.screen img{position:absolute;left:0;top:0;width:700px;height:1515px}
+.tap{position:absolute;border-radius:50%;border:5px solid rgba(124,92,246,.9);background:rgba(124,92,246,.18);pointer-events:none}
+.finger{position:absolute;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 8px 30px rgba(0,0,0,.35);border:3px solid rgba(124,92,246,.6)}
+.pill{display:inline-flex;align-items:center;gap:14px;border-radius:999px;font-weight:700}
+.card{position:absolute;left:0;width:1400px;border-radius:36px;overflow:hidden;box-shadow:0 60px 140px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.1)}
+.card img{display:block;width:1400px}
+</style></head><body><div id="stage">
+<div class="blob" id="b1" style="width:900px;height:900px;background:#6a41ec;opacity:.55"></div>
+<div class="blob" id="b2" style="width:700px;height:700px;background:#3b82f6;opacity:.22"></div>
+<div class="dots"></div>
+
+<!-- S1 hook -->
+<div class="layer" id="s1"></div>
+<div class="layer center" id="s1b"><div class="h1" style="font-size:150px">One <span class="grad">app.</span></div></div>
+
+<!-- S2 reveal -->
+<div class="layer center" id="s2">
+  <div class="logo" id="s2logo"><div class="mark"><svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div><div class="name">Life<span>OS</span></div></div>
+  <div class="h1" id="s2l1" style="margin-top:90px">The life planner that</div>
+  <div class="h1 grad" id="s2l2">plans with you.</div>
+</div>
+
+<!-- captions -->
+<div class="cap" id="c3"><div class="eyebrow">Today</div><div class="capline">Always know your<br>next step.</div></div>
+<div class="cap" id="c4a"><div class="eyebrow">AI Coach</div><div class="capline">Ask your coach.</div></div>
+<div class="cap" id="c4b"><div class="eyebrow">AI Coach</div><div class="capline">You approve.<br><span class="grad">Your plan updates.</span></div></div>
+<div class="cap" id="c5"><div class="eyebrow">Calendar</div><div class="capline">Day, week<br>or month.</div></div>
+
+<!-- phone -->
+<div class="phone" id="phone"><div class="screen" id="screen">
+  <img id="i-today" src="shots/today.png"><img id="i-today2" src="shots/today-after.png">
+  <img id="i-cempty" src="shots/coach-empty.png"><img id="i-ctyped" src="shots/coach-typed.png">
+  <div id="i-cmask" style="position:absolute;inset:0;background:rgb(249,252,254)"></div>
+  <img id="i-creply" src="shots/coach-reply.png"><img id="i-cdone" src="shots/coach-approved1.png">
+  <div id="xp" class="pill" style="position:absolute;right:30px;top:110px;padding:10px 22px;background:#f59e0b;color:#fff;font-size:34px;box-shadow:0 12px 30px rgba(245,158,11,.45)">+5 XP</div>
+  <div class="tap" id="tap"></div><div class="finger" id="finger"></div>
+</div></div>
+
+<!-- calendar card -->
+<div class="card" id="cal"><img src="shots/cal-card.png"></div>
+
+<!-- S6 outro -->
+<div class="layer center" id="s6">
+  <div class="logo" id="s6logo" style="transform:scale(.8)"><div class="mark"><svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div><div class="name">Life<span>OS</span></div></div>
+  <div class="h1" id="s6l1" style="margin-top:80px">7 days free,</div>
+  <div class="h1 grad" id="s6l2">then $1 a month.</div>
+  <div id="s6cta" class="pill" style="margin-top:80px;padding:34px 60px;background:#fff;color:#2a1d66;font-size:46px;box-shadow:0 30px 80px rgba(124,92,246,.5)">Start your free week <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#6a41ec" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+  <div id="s6sub" style="margin-top:44px;font-family:Inter;font-size:34px;color:#bbaeff;letter-spacing:1px">Goals · Calendar · Tasks · Money · Habits · Journal</div>
+</div>
+</div>
+<script>
+const WORDS=['Goals.','Calendar.','Tasks.','Money.','Habits.','Journal.'];
+const s1=document.getElementById('s1');
+WORDS.forEach((w,i)=>{const d=document.createElement('div');d.className='word';d.id='w'+i;d.textContent=w;d.style.color=i%2?'#bbaeff':'#fff';s1.appendChild(d)});
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lin=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);              // ease out cubic
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.5;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+function inout(t,a,b,fi=.35,fo=.3){return Math.min(eo(lin(t,a,a+fi)),1-lin(t,b-fo,b))}
+function set(el,o,tf){el.style.opacity=o;el.style.transform=tf||'';el.style.visibility=o<=0.001?'hidden':'visible'}
+// phone px from app CSS px
+const K=700/390;
+function render(t){
+  // background
+  $('b1').style.left=(90+Math.sin(t*.5)*120)+'px';$('b1').style.top=(300+Math.cos(t*.37)*160+(t>15&&t<18?200:0))+'px';
+  $('b2').style.left=(420+Math.cos(t*.42)*140)+'px';$('b2').style.top=(1150+Math.sin(t*.33)*160)+'px';
+  // S1 words: beat-synced at 0.25s
+  WORDS.forEach((w,i)=>{
+    const a=.05+i*.25, p=eo(lin(t,a,a+.18));
+    const collapse=eio(lin(t,1.6,1.95));
+    const y0=420+i*180;
+    const y=y0+(1-p)*60 + (960-60-y0)*collapse;
+    const o=p*(1-collapse);
+    set($('w'+i),o,`translateY(${y-330+330}px) scale(${1-collapse*.4})`);
+    $('w'+i).style.top='0px';
+  });
+  {const p=back(lin(t,1.9,2.2));const o=Math.min(lin(t,1.85,2.05),1-lin(t,2.35,2.55));set($('s1b'),o,`scale(${.6+.4*p})`)}
+  // S2 reveal 2.5-5.5
+  {const o=Math.min(1,1-lin(t,5.2,5.5));
+   set($('s2'),t>2.45&&t<5.5?o:0);
+   const pl=back(lin(t,2.55,2.95));set($('s2logo'),lin(t,2.5,2.7),`scale(${.5+.5*pl})`);
+   set($('s2l1'),eo(lin(t,2.85,3.2)),`translateY(${(1-eo(lin(t,2.85,3.2)))*40}px)`);
+   set($('s2l2'),eo(lin(t,3.05,3.4)),`translateY(${(1-eo(lin(t,3.05,3.4)))*40}px)`);}
+  // captions
+  const cap=(id,a,b)=>{const o=inout(t,a,b,.35,.25);set($(id),o,`translateY(${(1-eo(lin(t,a,a+.35)))*30}px)`)};
+  cap('c3',5.65,10.0);cap('c4a',10.15,12.35);cap('c4b',12.4,15.0);cap('c5',15.2,18.0);
+  // phone 5.5-15.15
+  {const pin=eo(lin(t,5.5,6.15)), pout=eio(lin(t,14.85,15.25));
+   const y=(1-pin)*1500+pout*1500;
+   set($('phone'),t>=5.5&&t<15.3?1:0,`translateY(${y}px) rotate(${(1-pin)*4-pout*3}deg)`);}
+  // screens
+  const show=(id,o)=>{$(id).style.opacity=o};
+  const tA=7.6, tB=11.75, tC=13.7;
+  show('i-today',t<10.0?1:0);
+  show('i-today2',t<10.0?lin(t,tA+.1,tA+.25):0);
+  const cs=lin(t,9.85,10.1);   // coach in (crossfade over today)
+  show('i-cempty',0);
+  show('i-ctyped',t<12.0?cs:0);
+  // typing mask: cover text not yet typed with empty-state pixels
+  {const p=lin(t,10.45,11.55);const m=$('i-cmask');
+   // line1 y 676-700, line2 700-724 (app px); text x 30-310
+   const x1=30+280*clamp(p*2), x2=30+280*clamp(p*2-1);
+   const Y=v=>v*K, X=v=>v*K;
+   m.style.clipPath=`polygon(${X(x1)}px ${Y(670)}px, ${X(314)}px ${Y(670)}px, ${X(314)}px ${Y(726)}px, ${X(x2)}px ${Y(726)}px, ${X(x2)}px ${Y(700)}px, ${X(x1)}px ${Y(700)}px)`;
+   m.style.opacity=t<12.0?cs*(p<1?1:0):0;}
+  show('i-creply',t<15.3?lin(t,12.0,12.2):0);
+  show('i-cdone',t<15.3?lin(t,tC+.1,tC+.25):0);
+  // XP pill
+  {const p=lin(t,tA+.15,tA+.5),q=lin(t,tA+1.4,tA+1.7);set($('xp'),t<10?Math.min(p,1-q):0,`translateY(${(1-eo(p))*30-q*20}px) scale(${.7+.3*back(p)})`)}
+  // taps: finger approaches, presses, ripple
+  const taps=[[tA,218+64,410+18],[tB,353,690],[tC,119+54,572+16]];
+  let fo=0,fx=0,fy=0,rip=0,rx=0,ry=0;
+  for(const [tt,x,y] of taps){
+    const a=lin(t,tt-.55,tt-.1), r=lin(t,tt,tt+.45), out=lin(t,tt+.15,tt+.4);
+    if(t>tt-.6&&t<tt+.5){fo=Math.min(eo(a),1-out);fx=x*K+(1-eo(a))*120;fy=y*K+(1-eo(a))*160;rx=x*K;ry=y*K;rip=r}
+  }
+  const press=taps.some(([tt])=>t>tt-.08&&t<tt+.1)?.82:1;
+  set($('finger'),fo,`scale(${press})`);$('finger').style.left=(fx-32)+'px';$('finger').style.top=(fy-32)+'px';
+  {const s=20+rip*140;const tp=$('tap');tp.style.width=tp.style.height=s+'px';tp.style.left=(rx-s/2)+'px';tp.style.top=(ry-s/2)+'px';tp.style.opacity=rip>0&&rip<1?(1-rip):0}
+  // calendar card 15.0-18.0
+  {const p=eo(lin(t,15.15,15.75)),o=Math.min(lin(t,15.15,15.45),1-lin(t,17.75,18.0));
+   const c=$('cal');c.style.top='500px';const px=40-400*eio(lin(t,15.6,17.7));set(c,o,`perspective(1600px) translate(${px}px,${(1-p)*220}px) rotateX(${(1-p)*14}deg) scale(${.94+.06*p})`)}
+  // S6 outro
+  {const o=lin(t,18.0,18.2);set($('s6'),o);
+   set($('s6logo'),eo(lin(t,18.0,18.35)),`scale(${.55+.25*back(lin(t,18.0,18.4))})`);
+   set($('s6l1'),eo(lin(t,18.25,18.6)),`translateY(${(1-eo(lin(t,18.25,18.6)))*40}px)`);
+   set($('s6l2'),eo(lin(t,18.45,18.8)),`translateY(${(1-eo(lin(t,18.45,18.8)))*40}px)`);
+   const c=lin(t,18.9,19.3);set($('s6cta'),eo(c),`scale(${.7+.3*back(c)})`);
+   set($('s6sub'),eo(lin(t,19.3,19.7)));}
+}
+window.render=render;render(0);
+</script></body></html>
